@@ -19,7 +19,6 @@ game_start = False
 difficulty = ""
 
 # GAME LOAD SECTION #
-
 page1 = pygame.image.load("main/startscreen.png").convert_alpha()
 page2 = pygame.image.load("main/instructions.png").convert_alpha()
 easy_button = pygame.Rect(200, 640, 250, 100) #xy width height
@@ -27,7 +26,8 @@ medium_button = pygame.Rect(400, 640, 250, 100)
 hard_button = pygame.Rect(700, 640, 250, 100)
 
 # LOOP #
-while True: 
+while True:
+    # GAME START MENU # 
     if intro:
         win.blit(page1, (0,0))
         pos = pygame.mouse.get_pos()
@@ -49,6 +49,7 @@ while True:
             intro = False
             instruction = True
         
+    # CHOOSE DIFFICULTY MENU #
     if instruction:
         win.fill(background_colour)
         win.blit(page2, (0,0))
