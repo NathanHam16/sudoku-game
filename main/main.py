@@ -63,7 +63,7 @@ while True:
                     instruction = False
                     game_start = True
                     
-    if game_start:
+    #if game_start:
         display()
             
 
