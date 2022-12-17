@@ -64,46 +64,31 @@ while True:
                     instruction = False
                     game_start = True
                     
-    #if game_start:
+    if game_start:
         display()
-            
-
-
-    for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
-            pos = pygame.mouse.get_pos()
-            # insert(win, (pos[0]//100, pos[1]//100))
-            pygame.display.update()
-                
-        if event.type == pygame.QUIT:
-            pygame.quit()
     
+    def display():    
+        pygame.init()
+        pygame.display.set_caption("Sudoku")
+        win.fill(background_colour)
 
-def display():    
-    pygame.init()
-    pygame.display.set_caption("Sudoku")
-    win.fill(background_colour)
-
-    myfont = pygame.font.SysFont('Calibri', 90)
-    pygame.display.update()
-     
-    for i in range(0,10):
-        if(i%3 == 0):
-            pygame.draw.line(win, (0,0,0), (100 + 100*i, 100), (100 + 100*i ,1000 ), 4)
-            pygame.draw.line(win, (0,0,0), (100, 100 + 100*i), (1000, 100 + 100*i), 4)
-
-        pygame.draw.line(win, (0,0,0), (100 + 100*i, 100), (100 + 100*i ,1000 ), 2)
-        pygame.draw.line(win, (0,0,0), (100, 100 + 100*i), (1000, 100 + 100*i), 2)
-    pygame.display.update()
-    
-    for i in range(0, len(grid[0])):
-        for j in range(0, len(grid[0])):
-            if(0<grid[i][j]<10):
-                value = myfont.render(str(grid[i][j]), True, text_colour)
-                win.blit(value, ((j+1)*100 + 30, (i+1)*100 + 15))
-
-
-    pygame.display.update()
+        myfont = pygame.font.SysFont('Calibri', 90)
+        pygame.display.update()
+        
+        for i in range(0,10):
+            if(i%3 == 0):
+                pygame.draw.line(win, (0,0,0), (100 + 100*i, 100), (100 + 100*i ,1000 ), 4)
+                pygame.draw.line(win, (0,0,0), (100, 100 + 100*i), (1000, 100 + 100*i), 4)
+            pygame.draw.line(win, (0,0,0), (100 + 100*i, 100), (100 + 100*i ,1000 ), 2)
+            pygame.draw.line(win, (0,0,0), (100, 100 + 100*i), (1000, 100 + 100*i), 2)
+        pygame.display.update()
+        
+        # for i in range(0, len(grid[0])):
+        #     for j in range(0, len(grid[0])):
+        #         if(0<grid[i][j]<10):
+        #             value = myfont.render(str(grid[i][j]), True, text_colour)
+        #             win.blit(value, ((j+1)*100 + 30, (i+1)*100 + 15))
+        # pygame.display.update()
 
 
 def insert(win, position):
@@ -129,5 +114,18 @@ def insert(win, position):
                     pygame.display.update()
                     return
                 return
+
+
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+            pos = pygame.mouse.get_pos()
+            # insert(win, (pos[0]//100, pos[1]//100))
+            pygame.display.update()
+                
+        if event.type == pygame.QUIT:
+            pygame.quit()
+    
+
+
     
 
