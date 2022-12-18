@@ -38,19 +38,24 @@ while True:
             pygame.quit()
         if event.type == pygame.MOUSEBUTTONUP and easy_button.collidepoint(pos[0], pos[1]):
             difficulty = "Difficuly: Easy"
+            response = requests.get("https://sugoku.herokuapp.com/board?difficulty=easy")
             intro = False
             instruction = True
         if event.type == pygame.MOUSEBUTTONUP and medium_button.collidepoint(pos[0], pos[1]):
             difficulty = "Difficulty: Medium"
+            response = requests.get("https://sugoku.herokuapp.com/board?difficulty=medium")
             intro = False
             instruction = True
         if event.type == pygame.MOUSEBUTTONUP and hard_button.collidepoint(pos[0], pos[1]):
             difficulty = "Difficulty: Hard"
+            response = requests.get("https://sugoku.herokuapp.com/board?difficulty=hard")
             intro = False
             instruction = True
         
     # CHOOSE DIFFICULTY MENU #
     if instruction:
+        grid = response.json()['board']
+        grid_original = [[grid[x][y] for y in range(len(grid[0]))] for x in range(len(grid))]
         win.fill(background_colour)
         win.blit(page2, (0,0))
         difficultystring = myfont.render(difficulty, True, text_colour)
@@ -83,12 +88,12 @@ while True:
             pygame.draw.line(win, (0,0,0), (100, 100 + 100*i), (1000, 100 + 100*i), 2)
         pygame.display.update()
         
-        # for i in range(0, len(grid[0])):
-        #     for j in range(0, len(grid[0])):
-        #         if(0<grid[i][j]<10):
-        #             value = myfont.render(str(grid[i][j]), True, text_colour)
-        #             win.blit(value, ((j+1)*100 + 30, (i+1)*100 + 15))
-        # pygame.display.update()
+        for i in range(0, len(grid[0])):
+            for j in range(0, len(grid[0])):
+                if(0<grid[i][j]<10):
+                    value = myfont.render(str(grid[i][j]), True, text_colour)
+                    win.blit(value, ((j+1)*100 + 30, (i+1)*100 + 15))
+        pygame.display.update()
 
 
 def insert(win, position):
