@@ -1,5 +1,6 @@
 import pygame
 import requests
+from gridgenerator import solve
 pygame.init()
 
 # INITIALISE DISPLAY #
