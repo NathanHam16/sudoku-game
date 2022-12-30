@@ -1,17 +1,34 @@
-import numpy as np
+from random import randint, shuffle
+from time import sleep
 import random
-from random import randint
 
-global grid
-grid = [[0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0],]
+# Initialise 9x9 grid with 0's
+# //grid = [[0,0,0,0,0,0,0,0,0],
+#          [0,0,0,0,0,0,0,0,0],
+#          [0,0,0,9,0,0,0,0,0],
+#          [0,0,0,0,0,0,0,0,0],
+#          [0,0,0,0,0,0,0,0,0],
+#          [0,0,0,0,0,0,0,0,0],
+#          [0,0,0,0,0,0,0,0,0],
+#          [0,0,0,0,0,0,9,0,0],
+#          [0,0,0,0,0,0,0,0,0],]
+         
+grid = [[5,3,0,0,7,0,0,0,0],
+        [6,0,0,1,9,5,0,0,0],
+        [0,9,8,0,0,0,0,6,0],
+        [8,0,0,0,6,0,0,0,3],
+        [4,0,0,8,0,3,0,0,1],
+        [7,0,0,0,2,0,0,0,6],
+        [0,6,0,0,0,0,2,8,0],
+        [0,0,0,4,1,9,0,0,5],
+        [0,0,0,0,8,0,0,0,0],]
+
+# A function to check if the grid is full
+def checkGrid(grid):
+  for row in range(0,9):
+      for col in range(0,9):
+        if grid[row][col]==0:
+          return False
 
 def possible(row,column,number): #This function checks if an input is possible
     global grid
@@ -44,5 +61,4 @@ def solve():
                         solve()
                         grid[row][column] = 0
                 return  
-    print(np.matrix(grid))
-    input("More Solutions")
+
