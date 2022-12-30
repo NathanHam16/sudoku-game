@@ -1,7 +1,5 @@
 import pygame
-import requests
-from gridgenerator import *
-from gridgenerator import grid
+from gridgenerator import solve
 from userinput import insert
 pygame.init()
 
@@ -70,9 +68,12 @@ while True:
                     game_start = True
                     
     if game_start:
+        grid = solve()
+        print(grid[1][1])
         display()
     
     def display():   
+        print("display")
         pygame.display.set_caption("Sudoku")
         win.fill(background_colour)
 

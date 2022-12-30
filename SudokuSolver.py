@@ -46,7 +46,6 @@ def solve():
                         grid[row][column] = 0
                 return  
     print(np.matrix(grid))
-    input("More Solutions")
 
 
 solve()

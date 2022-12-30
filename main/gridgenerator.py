@@ -1,5 +1,6 @@
 from random import randint, shuffle
 from time import sleep
+import numpy as np
 import random
 
 # Initialise 9x9 grid with 0's
@@ -25,10 +26,10 @@ grid = [[5,3,0,0,7,0,0,0,0],
 
 # A function to check if the grid is full
 def checkGrid(grid):
-  for row in range(0,9):
-      for col in range(0,9):
-        if grid[row][col]==0:
-          return False
+    for row in range(0,9):
+        for col in range(0,9):
+            if grid[row][col]==0:
+                return False
 
 def possible(row,column,number): #This function checks if an input is possible
     global grid
@@ -60,5 +61,6 @@ def solve():
                         grid[row][column] = number #Assign this number to the square
                         solve()
                         grid[row][column] = 0
-                return  
+                return grid 
+    print(np.matrix(grid))
 
