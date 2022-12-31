@@ -1,6 +1,7 @@
 import pygame
 from gridgenerator import solve
 from userinput import insert
+from gridgenerator import grid_copy
 pygame.init()
 
 # INITIALISE DISPLAY #
@@ -55,7 +56,7 @@ while True:
         win.fill(background_colour)
         win.blit(page2, (0,0))
         difficultystring = myfont.render(difficulty, True, text_colour)
-        instructionstring = myfont.render("Press Enter to Continue", True, (text_colour))
+        instructionstring = myfont.render("Press Enter to Continue", True, text_colour)
         win.blit(difficultystring, (20,20))
         win.blit(instructionstring, (400,800))
         pygame.display.update()
@@ -68,8 +69,8 @@ while True:
                     game_start = True
                     
     if game_start:
-        grid = solve()
-        print(grid) # I want this to print the completed solution, which was updated in gridgenerator.py
+        solve()
+        print(grid_copy) # I want this to print the completed solution, which was updated in gridgenerator.py
         display()
     
     def display():   
@@ -85,10 +86,10 @@ while True:
             pygame.draw.line(win, (0,0,0), (100 + 100*i, 100), (100 + 100*i ,1000 ), 2)
             pygame.draw.line(win, (0,0,0), (100, 100 + 100*i), (1000, 100 + 100*i), 2)
         
-        for i in range(0, len(grid[0])):
-            for j in range(0, len(grid[0])):
-                if(0<grid[i][j]<10):
-                    value = myfont.render(str(grid[i][j]), True, (0,0,0))
+        for i in range(0, len(grid_copy[0])):
+            for j in range(0, len(grid_copy[0])):
+                if(0<grid_copy[i][j]<10):
+                    value = myfont.render(str(grid_copy[i][j]), True, (0,0,0))
                     win.blit(value, ((j+1)*100 + 30, (i+1)*100 + 15))
         pygame.display.update()
 

@@ -2,6 +2,7 @@ from random import randint, shuffle
 from time import sleep
 import numpy as np
 import random
+import copy 
 
 # Initialise 9x9 grid with 0's
 # //grid = [[0,0,0,0,0,0,0,0,0],
@@ -23,6 +24,8 @@ grid = [[5,3,0,0,7,0,0,0,0],
         [0,6,0,0,0,0,2,8,0],
         [0,0,0,4,1,9,0,0,5],
         [0,0,0,0,8,0,0,0,0],]
+
+grid_copy = copy.deepcopy(grid)
 
 # A function to check if the grid is full
 def checkGrid(grid):
@@ -51,6 +54,7 @@ def possible(row,column,number): #This function checks if an input is possible
 #Because this function is also used to generate a completely random solution given a grid of 0's
 def solve():
     global grid
+    global grid_copy
     number_list = [1,2,3,4,5,6,7,8,9]
     random.shuffle(number_list) #Shuffles the first row of the solution
     for row in range(0,9):
@@ -61,6 +65,7 @@ def solve():
                         grid[row][column] = number #Assign this number to the square
                         solve()
                         grid[row][column] = 0
-                return grid
+                return
+    grid_copy = grid    
     print(np.matrix(grid)) # This is the complete solution, but is not updated in main
 
