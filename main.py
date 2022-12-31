@@ -1,7 +1,6 @@
 import pygame
-from gridgenerator import solve
 from userinput import insert
-from gridgenerator import grid_copy
+from gridgenerator import get_grid
 pygame.init()
 
 # INITIALISE DISPLAY #
@@ -67,12 +66,12 @@ while True:
                 if event.key == pygame.K_RETURN:
                     instruction = False
                     game_start = True
-                    
+    # GAME START #                
     if game_start:
-        solve()
-        print(grid_copy) # I want this to print the completed solution, which was updated in gridgenerator.py
+        grid = get_grid()
         display()
     
+    # DISPLAYS GRID AND VALUES#
     def display():   
         pygame.display.set_caption("Sudoku")
         win.fill(background_colour)
@@ -86,11 +85,11 @@ while True:
             pygame.draw.line(win, (0,0,0), (100 + 100*i, 100), (100 + 100*i ,1000 ), 2)
             pygame.draw.line(win, (0,0,0), (100, 100 + 100*i), (1000, 100 + 100*i), 2)
         
-        for i in range(0, len(grid_copy[0])):
-            for j in range(0, len(grid_copy[0])):
-                if(0<grid_copy[i][j]<10):
-                    value = myfont.render(str(grid_copy[i][j]), True, (0,0,0))
-                    win.blit(value, ((j+1)*100 + 30, (i+1)*100 + 15))
+        for i in range(0, len(grid[0])):
+            for j in range(0, len(grid[0])):
+                if(0<grid[i][j]<10):
+                    value = myfont.render(str(grid[i][j]), True, (0, 0, 0))
+                    win.blit(value, ((j+1)*100 + 30, (i+1)*100 + 13))
         pygame.display.update()
 
         while True: 

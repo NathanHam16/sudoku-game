@@ -13,7 +13,7 @@ import copy
 #          [0,0,0,0,0,0,0,0,0],
 #          [0,0,0,0,0,0,0,0,0],
 #          [0,0,0,0,0,0,9,0,0],
-#          [0,0,0,0,0,0,0,0,0],]
+#          [0,0,0,0,0,0,0,0,0],] doesnt work
          
 grid = [[5,3,0,0,7,0,0,0,0],
         [6,0,0,1,9,5,0,0,0],
@@ -25,7 +25,7 @@ grid = [[5,3,0,0,7,0,0,0,0],
         [0,0,0,4,1,9,0,0,5],
         [0,0,0,0,8,0,0,0,0],]
 
-grid_copy = copy.deepcopy(grid)
+grid_copy = []
 
 # A function to check if the grid is full
 def checkGrid(grid):
@@ -50,6 +50,10 @@ def possible(row,column,number): #This function checks if an input is possible
                 return False
     return True
 
+def get_grid():
+    solve()
+    return grid_copy
+
 #This function solves the given grid. Furthermore, it iterates through the number list randomly
 #Because this function is also used to generate a completely random solution given a grid of 0's
 def solve():
@@ -66,6 +70,5 @@ def solve():
                         solve()
                         grid[row][column] = 0
                 return
-    grid_copy = grid    
-    print(np.matrix(grid)) # This is the complete solution, but is not updated in main
+    grid_copy = copy.deepcopy(grid)
 
