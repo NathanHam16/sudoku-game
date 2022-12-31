@@ -20,8 +20,8 @@ game_start = False
 difficulty = ""
 
 # GAME LOAD SECTION #
-page1 = pygame.image.load("main/startscreen.png").convert_alpha()
-page2 = pygame.image.load("main/instructions.png").convert_alpha()
+page1 = pygame.image.load("./startscreen.png").convert_alpha()
+page2 = pygame.image.load("./instructions.png").convert_alpha()
 easy_button = pygame.Rect(200, 640, 250, 100) #xy width height
 medium_button = pygame.Rect(400, 640, 250, 100)
 hard_button = pygame.Rect(700, 640, 250, 100)

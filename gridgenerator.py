@@ -61,6 +61,6 @@ def solve():
                         grid[row][column] = number #Assign this number to the square
                         solve()
                         grid[row][column] = 0
-                return 
+                return grid
     print(np.matrix(grid)) # This is the complete solution, but is not updated in main
 
