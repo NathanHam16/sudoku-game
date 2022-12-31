@@ -55,12 +55,12 @@ def solve():
     random.shuffle(number_list) #Shuffles the first row of the solution
     for row in range(0,9):
         for column in range(0,9):
-            if grid[row][column] == 0:
+            if grid[row][column] == 0: #Runs only if square is 0
                 for number in number_list: #Iterates at a random order to determine possible results
-                    if possible(row,column, number): #If the random number can be a solution to the square
+                    if possible(row, column, number): #If the random number can be a solution to the square
                         grid[row][column] = number #Assign this number to the square
                         solve()
                         grid[row][column] = 0
-                return grid 
-    print(np.matrix(grid))
+                return 
+    print(np.matrix(grid)) # This is the complete solution, but is not updated in main
 

@@ -69,11 +69,10 @@ while True:
                     
     if game_start:
         grid = solve()
-        print(grid[1][1])
+        print(grid) # I want this to print the completed solution, which was updated in gridgenerator.py
         display()
     
     def display():   
-        print("display")
         pygame.display.set_caption("Sudoku")
         win.fill(background_colour)
 
