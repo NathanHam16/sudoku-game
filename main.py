@@ -1,6 +1,7 @@
 import pygame
 from userinput import insert
 from gridgenerator import get_grid
+from removesquares import removegridsquares
 pygame.init()
 
 # INITIALISE DISPLAY #
@@ -38,7 +39,7 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
         if event.type == pygame.MOUSEBUTTONUP and easy_button.collidepoint(pos[0], pos[1]):
-            difficulty = "Difficuly: Easy"
+            difficulty = "Difficulty: Easy"
             intro = False
             instruction = True
         if event.type == pygame.MOUSEBUTTONUP and medium_button.collidepoint(pos[0], pos[1]):
@@ -69,6 +70,7 @@ while True:
     # GAME START #                
     if game_start:
         grid = get_grid()
+        removegridsquares(grid, difficulty)
         display()
     
     # DISPLAYS GRID AND VALUES#
