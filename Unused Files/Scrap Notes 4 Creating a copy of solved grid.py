@@ -39,15 +39,15 @@ class Solution(object):
         number_list = [1,2,3,4,5,6,7,8,9]
         random.shuffle(number_list) #Shuffles the first row of the solution
         print(grid)
-#         for row in range(0,9):
-#             for column in range(0,9):
-#                 if grid[row][column] == 0:
-#                     for number in number_list:
-#                         if possible(row, column, number):
-#                             grid[row][column] = number
-#                             solve()
-#                             grid[row][column] = 0
-#                     return
+        for row in range(0,9):
+            for column in range(0,9):
+                if grid[row][column] == 0:
+                    for number in number_list:
+                        if possible(row, column, number):
+                            grid[row][column] = number
+                            solve()
+                            grid[row][column] = 0
+                    return
         gridcopy.matrixGrid = np.matrix(grid)              
                 
     problem = object()

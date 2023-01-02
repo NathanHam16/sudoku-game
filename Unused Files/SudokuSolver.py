@@ -45,7 +45,10 @@ def solve():
                         solve()
                         grid[row][column] = 0
                 return  
-    print(np.matrix(grid))
+    print(1)
+    input()
+
+    
 
 
 solve()

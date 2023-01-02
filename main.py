@@ -1,6 +1,7 @@
 import pygame
 from userinput import insert
 from gridgenerator import get_grid
+from gridgenerator import generate_sudoku
 from removesquares import removegridsquares
 pygame.init()
 
@@ -69,8 +70,8 @@ while True:
                     game_start = True
     # GAME START #                
     if game_start:
-        grid = get_grid()
-        removegridsquares(grid, difficulty)
+        grid = generate_sudoku()
+        #removegridsquares(grid, difficulty)
         display()
     
     # DISPLAYS GRID AND VALUES#
@@ -102,6 +103,8 @@ while True:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     return
+
+
 
 
     
