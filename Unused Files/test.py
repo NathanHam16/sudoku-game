@@ -1,18 +1,12 @@
-base  = 3
-side  = base*base
+import random
 
-# pattern for a baseline valid solution
-def pattern(r,c): return (base*(r%base)+r//base+c)%side
+def create_board():
+    width = 9
+    board = [[(i + k) % 9 + 1 for i in range(1, width + 1)] for k in range(width)] # Creates a board where each row counts to 9 such that no row contains more than one kind of each number. You can run this separately to see what it generates.
+    random.shuffle(board) # Shuffles this list of lists
+    board = [[board[x][y] for x in range(9)] for y in range(9)] # Reads each row and puts it into a column. (basically rotates it to its side)
+    random.shuffle(board) # Shuffles this list again but while its on its side
+    return board
 
-# randomize rows, columns and numbers (of valid base pattern)
-from random import sample
-def shuffle(s): return sample(s,len(s)) 
-rBase = range(base) 
-rows  = [ g*base + r for g in shuffle(rBase) for r in shuffle(rBase) ] 
-cols  = [ g*base + c for g in shuffle(rBase) for c in shuffle(rBase) ]
-nums  = shuffle(range(1,base*base+1))
-
-# produce board using randomized baseline pattern
-board = [ [nums[pattern(r,c)] for c in cols] for r in rows ]
-
-    
+board = create_board()
+print(board)   
