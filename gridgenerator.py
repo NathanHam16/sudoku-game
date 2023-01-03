@@ -4,29 +4,17 @@ import numpy as np
 import random
 import copy
 
-#Initialise 9x9 grid with 0's
+global grid
 grid = [[0,0,0,0,0,0,0,0,0],
          [0,0,0,0,0,0,0,0,0],
-         [0,0,0,9,0,0,0,0,0],
+         [0,0,0,0,0,0,0,0,0],
          [0,0,0,0,0,0,0,0,0],
          [0,0,0,0,0,0,0,0,0],
          [0,0,0,0,0,0,0,0,0],
          [0,0,0,0,0,0,0,0,0],
          [0,0,0,0,0,0,0,0,0],
          [0,0,0,0,0,0,0,0,0],]
-
-# grid = [[5,3,0,0,7,0,0,0,0],
-#         [6,0,0,1,9,5,0,0,0],
-#         [0,9,8,0,0,0,0,6,0],
-#         [8,0,0,0,6,0,0,0,3],
-#         [4,0,0,8,0,3,0,0,1],
-#         [7,0,0,0,2,0,0,0,6],
-#         [0,6,0,0,0,0,2,8,0],
-#         [0,0,0,4,1,9,0,0,5],
-#         [0,0,0,0,8,0,0,0,0],]
-
-grid_copy = []
-
+         
 # A function to check if the grid is full
 def checkGrid(grid):
     for row in range(0,9):
@@ -51,12 +39,6 @@ def possible(row,column,number): #This function checks if an input is possible
     return True
 
 def get_grid():
-    number_list = [1,2,3,4,5,6,7,8,9]
-    random.shuffle(number_list) #Shuffles the first row of the solution
-    grid[0] = number_list # Inserts this shuffle into first row
-    reversed = number_list[::-1]
-    grid[8] = reversed #Inserts reversed shuffle into last row
-    grid[8][4], grid[8][1] = grid[8][1], grid[8][4] #Switches middle element 
     solve(grid)
     return grid_copy
 
@@ -65,19 +47,23 @@ def get_grid():
 #Because this function is also used to generate a completely random solution given a grid of 0's
 def solve(grid):
     global grid_copy
-    while(sum([row.count(0) for row in grid]) > 0):
-        indices = np.argwhere(np.array(grid) == 0)
-        row = indices[0][0]
-        column = indices[0][1]
-        if grid[row][column] == 0: #Runs only if square is 0
-            for number in number_list: #Iterates at a random order to determine possible results
-                if possible(row, column, number): #If the random number can be a solution to the square
-                    grid[row][column] = number #Assign this number to the square
-                    solve(grid)
-                    grid[row][column] = 0
-                    return
-        grid_copy = copy.deepcopy(grid)
-        print(np.matrix(grid))
-        return
+    base  = 3
+    side  = 9
+
+    # pattern for a baseline valid solution
+    def pattern(r,c): return (base*(r%base)+r//base+c)%side
+
+    # randomize rows, columns and numbers (of valid base pattern)
+    from random import sample
+    def shuffle(s): return sample(s,len(s)) 
+    rBase = range(base) 
+    rows  = [ g*base + r for g in shuffle(rBase) for r in shuffle(rBase) ] 
+    cols  = [ g*base + c for g in shuffle(rBase) for c in shuffle(rBase) ]
+    nums  = shuffle(range(1,base*base+1))
+
+    # produce board using randomized baseline pattern
+    grid = [ [nums[pattern(r,c)] for c in cols] for r in rows ]
+    grid_copy = copy.deepcopy(grid)
+
 
 

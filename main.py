@@ -71,7 +71,7 @@ while True:
     if game_start:
         grid = get_grid()
         #removegridsquares(grid, difficulty)
-        #display()
+        display()
     
     # DISPLAYS GRID AND VALUES#
     def display():   
