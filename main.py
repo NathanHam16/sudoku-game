@@ -70,7 +70,7 @@ while True:
     # GAME START #                
     if game_start:
         grid = get_grid()
-        removegridsquares(grid, difficulty)
+        #removegridsquares(grid, difficulty)
         display()
     
     # DISPLAYS GRID AND VALUES#

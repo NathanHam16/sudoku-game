@@ -42,12 +42,17 @@ def get_grid():
     grid_copy = solve()
     return grid_copy
 
+#This algorithm creates a valid board where each number on the diagonal are the same, and shuffles each row.
+#It is important that the board is rotated before shuffling a second time to still be a valid sudoku solution.
 def solve():
-    width = 9
-    grid = [[(i + k) % 9 + 1 for i in range(1, width + 1)] for k in range(width)] # Creates a board where each row counts to 9 such that no row contains more than one kind of each number. You can run this separately to see what it generates.
-    random.shuffle(grid) # Shuffles this list of lists
-    grid = [[grid[x][y] for x in range(9)] for y in range(9)] # Reads each row and puts it into a column. (basically rotates it to its side)
-    random.shuffle(grid) # Shuffles this list again but while its on its side
+    # Creates a board where each row and column counts to 9, so that each number on the diagonal are the same. 
+    grid = [[(i + k) % 9 + 1 for i in range(1, 10)] for k in range(9)]
+    # Shuffles this list of lists
+    random.shuffle(grid)
+    # Reads each row and puts it into a column. (basically rotates it to its side)
+    grid = [[grid[x][y] for x in range(9)] for y in range(9)]
+    # Shuffles this list again but while its on its side
+    random.shuffle(grid)
     return grid
 
 
