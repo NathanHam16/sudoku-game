@@ -35,9 +35,16 @@ def possible(row,column,number): #This function checks if an input is possible
 def solve():
     global grid
     number_list = [1,2,3,4,5,6,7,8,9]
+    grid[0] = number_list
     random.shuffle(number_list) #Shuffles the first row of the solution
+    number_list = [1,2,3,4,5,6,7,8,9]
+    random.shuffle(number_list) #Shuffles the first row of the solution
+    grid[0] = number_list
+    reversed = number_list[::-1]
+    grid[8] = reversed
+    grid[8][4], grid[8][1] = grid[8][1], grid[8][4]
     for row in range(0,9):
-        for column in range(0,9):
+        for column in range(1,8):
             if grid[row][column] == 0:
                 for number in number_list: #Iterates at a random order to determine possible results
                     if possible(row,column, number): #If the random number can be a solution to the square

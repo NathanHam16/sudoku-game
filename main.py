@@ -69,7 +69,7 @@ while True:
                     game_start = True
     # GAME START #                
     if game_start:
-        grid = s
+        grid = get_grid()
         #removegridsquares(grid, difficulty)
         #display()
     

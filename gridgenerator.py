@@ -51,6 +51,12 @@ def possible(row,column,number): #This function checks if an input is possible
     return True
 
 def get_grid():
+    number_list = [1,2,3,4,5,6,7,8,9]
+    random.shuffle(number_list) #Shuffles the first row of the solution
+    grid[0] = number_list # Inserts this shuffle into first row
+    reversed = number_list[::-1]
+    grid[8] = reversed #Inserts reversed shuffle into last row
+    grid[8][4], grid[8][1] = grid[8][1], grid[8][4] #Switches middle element 
     solve(grid)
     return grid_copy
 
@@ -59,19 +65,19 @@ def get_grid():
 #Because this function is also used to generate a completely random solution given a grid of 0's
 def solve(grid):
     global grid_copy
-    number_list = [1,2,3,4,5,6,7,8,9]
-    random.shuffle(number_list) #Shuffles the first row of the solution
-    for row in range(0,9):
-        for column in range(0,9):
-            if grid[row][column] == 0: #Runs only if square is 0
-                for number in number_list: #Iterates at a random order to determine possible results
-                    if possible(row, column, number): #If the random number can be a solution to the square
-                        grid[row][column] = number #Assign this number to the square
-                        solve(grid)
-                        grid[row][column] = 0
-                return
-    grid_copy = copy.deepcopy(grid)
-    print(np.matrix(grid))
-    return
+    while(sum([row.count(0) for row in grid]) > 0):
+        indices = np.argwhere(np.array(grid) == 0)
+        row = indices[0][0]
+        column = indices[0][1]
+        if grid[row][column] == 0: #Runs only if square is 0
+            for number in number_list: #Iterates at a random order to determine possible results
+                if possible(row, column, number): #If the random number can be a solution to the square
+                    grid[row][column] = number #Assign this number to the square
+                    solve(grid)
+                    grid[row][column] = 0
+                    return
+        grid_copy = copy.deepcopy(grid)
+        print(np.matrix(grid))
+        return
 
 
