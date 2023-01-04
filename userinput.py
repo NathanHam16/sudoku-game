@@ -2,6 +2,7 @@ import pygame
 from gridgenerator import grid
 background_colour = (255,255,255)
 buffer = 5
+red = (255,160,122)
 
 def insert(win, position):
     i,j = position[1], position[0]
