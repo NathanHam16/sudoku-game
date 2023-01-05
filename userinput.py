@@ -10,14 +10,13 @@ def insert(win, position):
     myfont = pygame.font.SysFont('Calibri', 90)
     while True:
         for event in pygame.event.get():
-            if(grid[i-1][j-1] != 0):
+            if(grid[i-1][j-1] == 0):
                 pygame.draw.rect(win, red, (position[0]*100 + 6, position[1]*100+5,100 - 2*5 , 90))
                 pygame.display.update()
+            else: return
             if event.type == pygame.QUIT:
                 return
             if event.type == pygame.KEYDOWN:
-                if(grid[i-1][j-1] != 0):
-                    return
                 if(event.key == 48): #checking with 0
                     grid[i-1][j-1] = event.key - 48
                     pygame.draw.rect(win, background_colour, (position[0]*100+3, position[1]*100+3, 96, 96))
