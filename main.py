@@ -72,7 +72,7 @@ while True:
         grid = get_grid()
         removegridsquares(grid, difficulty)
         display()
-    
+
     # DISPLAYS GRID AND VALUES#
     def display():   
         pygame.display.set_caption("Sudoku")
