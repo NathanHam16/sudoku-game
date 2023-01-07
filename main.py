@@ -2,6 +2,8 @@ import pygame
 from userinput import insert
 from gridgenerator import get_grid
 from removesquares import removegridsquares
+import copy
+
 pygame.init()
 
 # INITIALISE DISPLAY #
@@ -71,6 +73,7 @@ while True:
     if game_start:
         grid = get_grid()
         removegridsquares(grid, difficulty)
+        grid_copy = copy.deepcopy(grid)
         display()
 
     # DISPLAYS GRID AND VALUES#
@@ -98,7 +101,7 @@ while True:
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                     pos = pygame.mouse.get_pos()
-                    insert(grid, win, (pos[0]//100, pos[1]//100))
+                    insert(grid, grid_copy, win, (pos[0]//100, pos[1]//100))
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     return
