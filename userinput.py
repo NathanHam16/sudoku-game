@@ -1,12 +1,10 @@
 import pygame
-from gridgenerator import get_grid
 from gridgenerator import possible
 background_colour = (255,255,255)
 buffer = 5
 red = (255,160,122)
 
 def insert(grid, win, position):
-    grid = get_grid()
     i,j = position[1], position[0]
     myfont = pygame.font.SysFont('Calibri', 90)
     while True:
@@ -24,13 +22,13 @@ def insert(grid, win, position):
                     return
                 if(0 < input <10):  #We are checking for valid input
                     pygame.draw.rect(win, background_colour, (position[0]*100 + 6, position[1]*100+5,100 -2*5 , 100 - 2*5))
-                    value = myfont.render(str(event.key-48), True, (10,10,10))
+                    value = myfont.render(str(event.key-48), True, (100,100,100))
                     wrongvalue = myfont.render(str(event.key-48), True, (238, 75, 43))
-                    grid[i-1][j-1] = input
                     if (possible(grid, i-1, j-1, input) == True):
                         win.blit(value, (position[0]*100 + 30, position[1]*100 + 15))
                     else:
                         win.blit(wrongvalue, (position[0]*100 + 30, position[1]*100 + 15))
+                    grid[i-1][j-1] = input
                     pygame.display.update()
                     return
                 return

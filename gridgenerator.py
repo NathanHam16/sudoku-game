@@ -41,9 +41,7 @@ def solve():
     grid = [ [nums[pattern(r,c)] for c in cols] for r in rows ]   
     return grid
 
-def possible(grid, row,column,number): #This function checks if an input is possible
-
-    print(np.matrix(grid))
+def possible(grid, row, column,number): #This function checks if an input is possible
     for i in range(0,9): #Does the number exist in this row?
         if grid[row][i] == number:
             return False
