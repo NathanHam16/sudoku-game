@@ -8,7 +8,6 @@ red = (255,160,122)
 def insert(grid, grid_copy, win, position):
     i,j = position[1], position[0]
     myfont = pygame.font.SysFont('Calibri', 90)
-    print(np.matrix(grid_copy))
     if(grid_copy[i-1][j-1] != 0):
         return
     pygame.draw.rect(win, red, (position[0]*100 + 6, position[1]*100+5,100 - 2*5 , 90))

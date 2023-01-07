@@ -2,6 +2,8 @@ import pygame
 from userinput import insert
 from gridgenerator import get_grid
 from removesquares import removegridsquares
+from congratulations import congratulations
+import numpy as np
 import copy
 
 pygame.init()
@@ -98,6 +100,14 @@ while True:
         pygame.display.update()
 
         while True: 
+            array = np.array(grid)
+            zeros = np.sum(np.where(array == 0, 1, 0))
+            if(zeros == 0):
+                print()
+                congratulations()
+                
+            
+
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                     pos = pygame.mouse.get_pos()
