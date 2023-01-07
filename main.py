@@ -98,7 +98,7 @@ while True:
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                     pos = pygame.mouse.get_pos()
-                    insert(win, (pos[0]//100, pos[1]//100))
+                    insert(grid, win, (pos[0]//100, pos[1]//100))
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     return
