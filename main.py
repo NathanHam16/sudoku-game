@@ -104,7 +104,7 @@ while True:
             zeros = np.sum(np.where(array == 0, 1, 0))
             if(zeros == 0):
                 print()
-                congratulations()
+                congratulations(intro, instruction, game_start=)
                 
             
 
