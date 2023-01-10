@@ -2,7 +2,6 @@ import pygame
 from userinput import insert
 from gridgenerator import get_grid
 from removesquares import removegridsquares
-from congratulations import congratulations
 import numpy as np
 import copy
 
@@ -79,7 +78,10 @@ while True:
         display()
 
     # DISPLAYS GRID AND VALUES#
-    def display():   
+    def display():  
+        global intro
+        global instruction
+        global game_start 
         pygame.display.set_caption("Sudoku")
         win.fill(background_colour)
 
@@ -103,10 +105,7 @@ while True:
             array = np.array(grid)
             zeros = np.sum(np.where(array == 0, 1, 0))
             if(zeros == 0):
-                print()
-                congratulations(intro, instruction, game_start=)
-                
-            
+                break
 
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
