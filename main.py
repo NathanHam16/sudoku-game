@@ -22,6 +22,7 @@ intro = True
 instruction = False
 game_start = False
 difficulty = ""
+score = 0
 
 # GAME LOAD SECTION #
 page1 = pygame.image.load("./startscreen.png").convert_alpha()
@@ -60,7 +61,9 @@ while True:
         win.blit(page2, (0,0))
         difficultystring = myfont.render(difficulty, True, text_colour)
         instructionstring = myfont.render("Press Enter to Continue", True, text_colour)
+        scorestring = myfont.render("Score: " + str(score), True, text_colour)
         win.blit(difficultystring, (20,20))
+        win.blit(scorestring, (950,20))
         win.blit(instructionstring, (400,800))
         pygame.display.update()
         for event in pygame.event.get():
@@ -79,6 +82,7 @@ while True:
 
     # DISPLAYS GRID AND VALUES#
     def display():  
+        global score
         global intro
         global instruction
         global game_start 
@@ -99,12 +103,16 @@ while True:
                 if(0<grid[i][j]<10):
                     value = myfont.render(str(grid[i][j]), True, (0, 0, 0))
                     win.blit(value, ((j+1)*100 + 30, (i+1)*100 + 13))
+        myfontscore = pygame.font.SysFont('Calibri', 32)
+        scorestring2 = myfontscore.render("Score: " + str(score), True, (0,0,0))
+        win.blit(scorestring2, (950,20))
         pygame.display.update()
 
         while True: 
             array = np.array(grid)
             zeros = np.sum(np.where(array == 0, 1, 0))
             if(zeros == 0):
+                score += 1
                 break
 
             for event in pygame.event.get():
