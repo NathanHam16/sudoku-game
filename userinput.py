@@ -6,6 +6,8 @@ buffer = 5
 red = (255,160,122)
 
 def insert(grid, grid_copy, win, position):
+    array = np.array(grid)
+    zeros = np.sum(np.where(array == 0, 1, 0))
     i,j = position[1], position[0]
     myfont = pygame.font.SysFont('Calibri', 90)
     if(grid_copy[i-1][j-1] != 0):
@@ -29,9 +31,13 @@ def insert(grid, grid_copy, win, position):
                     wrongvalue = myfont.render(str(event.key-48), True, (238, 75, 43))
                     if (possible(grid, i-1, j-1, input) == True):
                         win.blit(value, (position[0]*100 + 30, position[1]*100 + 15))
+                        grid[i-1][j-1] = input
                     else:
                         win.blit(wrongvalue, (position[0]*100 + 30, position[1]*100 + 15))
-                    grid[i-1][j-1] = input
+                        if (zeros == 1):
+                            print("wrong solution")
+                        else:
+                            grid[i-1][j-1] = input
                     pygame.display.update()
                     return
                 return
